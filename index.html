@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open Journalist · The open-source AI harness for journalism</title>
+<meta name="description" content="Open Journalist is an open-source AI harness for journalism. Agents do the legwork of research, verification and drafting; every statement stays tied to its evidence, and nothing goes out until a person has signed it off.">
+<meta property="og:title" content="Open Journalist: the AI harness that knows journalism">
+<meta property="og:description" content="Agents propose, people decide. Every statement tied to its evidence. Runs on your computer, works with the model of your choice. Open source under EUPL-1.2.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kaimys.github.io/open-journalist/assets/img/readme/hero-light.webp">
+<link rel="icon" href="assets/img/mark.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/inter-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="status">Early prototype, built at the AI for Media Hackathon 2026. Do not use it with real research material yet. <a href="blog/ai-for-media-hackathon-2026.html">Read the story</a></div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="Open Journalist, home"><img src="assets/img/logo.svg" alt="open journalist" width="160" height="22"></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="#demo">Demo</a>
+      <a href="#why">Why</a>
+      <a href="docs/">Docs</a>
+      <a href="blog/">Blog</a>
+      <a href="https://github.com/open-journalist/open-journalist">GitHub</a>
+      <a class="btn btn--solid" href="docs/install.html">Get started</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <ul class="claim" aria-label="data, structure, story">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#1D1B1A"><circle cx="4" cy="4" r="2"/><circle cx="12" cy="4" r="1.5"/><circle cx="20" cy="4" r="2"/><circle cx="4" cy="12" r="1.5"/><circle cx="12" cy="12" r="2.4"/><circle cx="20" cy="12" r="1.5"/><circle cx="4" cy="20" r="2"/><circle cx="12" cy="20" r="1.5"/><circle cx="20" cy="20" r="2"/></g></svg>data.</li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="#1D1B1A" stroke="#1D1B1A" stroke-width="2"><line x1="12" y1="5" x2="5" y2="19"/><line x1="12" y1="5" x2="19" y2="19"/><circle cx="12" cy="5" r="3" stroke="none"/><circle cx="5" cy="19" r="3" stroke="none"/><circle cx="19" cy="19" r="3" stroke="none"/></g></svg>structure.</li>
+        <li><img src="assets/img/mark.svg" alt="" width="24" height="18" style="width:24px;height:auto">story.</li>
+      </ul>
+      <h1>The AI harness that knows journalism.</h1>
+      <p class="lead">Agents do the legwork of research, verification and drafting. Every statement stays tied to its evidence, and nothing goes out until a person has signed it off.</p>
+      <div class="btn-row">
+        <a class="btn btn--solid" href="docs/install.html">Get started</a>
+        <a class="btn" href="#demo">See it work</a>
+      </div>
+      <p class="hero-meta">Open source · EUPL-1.2 · Windows &amp; macOS · runs on your own computer · any OpenAI-compatible model</p>
+    </div>
+    <div class="hero-figure">
+      <img src="assets/img/illu/journalist-standing.webp" alt="Illustration: a young journalist with headphones around her neck and a coffee cup, smiling." width="403" height="900">
+    </div>
+  </div>
+</section>
+
+<!-- Problem -->
+<section class="section">
+  <div class="wrap problem">
+    <div>
+      <span class="eyebrow">The problem</span>
+      <h2>Every investigation starts in the noise.</h2>
+      <p class="lead">Tables, documents, recordings, agency copy. One reporter, a deadline, and nobody to think it through with.</p>
+      <p>AI has made it cheap to turn recordings and documents into text, summaries and candidate facts. It has not made it any cheaper to check them. In many newsrooms AI arrives in separate pieces: transcription in one tool, a chatbot in another, a verification plug-in somewhere else, with copy and paste in between and no record of where a statement came from.</p>
+      <p><strong>Checking is the bottleneck.</strong> Open Journalist does not promise to save you time. It aims for more verified statements in the time you have.</p>
+    </div>
+    <img src="assets/img/illu/paper-stacks.webp" alt="Illustration: tall stacks of paper, folders and binders." width="930" height="900" loading="lazy">
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- Idea -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The idea</span>
+      <h2>From material to a story with evidence.</h2>
+      <p class="lead">One place for the whole editorial process, from the first file to the signed-off draft. Not another tool in the chain, but the harness around it.</p>
+    </div>
+    <div class="steps3">
+      <div>
+        <span class="num">01</span>
+        <h3>You bring material.</h3>
+        <p>Everything you have: documents, tables, scans, recordings, links. You only say how confidential it is.</p>
+      </div>
+      <div>
+        <span class="num">02</span>
+        <h3>Open Journalist sorts it.</h3>
+        <p>It analyzes data locally, proposes theses and looks for the evidence behind them, down to the line and the stored query.</p>
+      </div>
+      <div>
+        <span class="num">03</span>
+        <h3>You decide.</h3>
+        <p>What holds becomes your story, in the formats you need. What does not hold stays visible as a contradiction or a gap.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Demo -->
+<section class="section section--soft" id="demo">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Live · the demo case “E-Auto-Check”</span>
+      <h2>What is in the numbers?</h2>
+      <p class="lead">A short text claims that Germany registered 545,000 new electric cars in 2025, and that an analysis on the web counts 1.6 million. Next to it: a table of new registrations from 2013 to October 2026, about 60,000 rows. Here is what Open Journalist does with it.</p>
+    </div>
+
+    <div class="walk">
+      <article class="walk-step">
+        <div>
+          <span class="num">1</span>
+          <h3>“Give me what you have.”</h3>
+          <p>A project starts with one field, not a form. Drop in files, paste links, type or speak what the story is about. Nothing is opened until you have said how confidential each file is: public, internal, confidential or source protection.</p>
+        </div>
+        <figure class="shot"><img src="assets/img/screens/start-crop.webp" alt="Screenshot: the start page of a new project with the sentence “Gib mir, was du hast.” and a single input field for files, links, text or voice." width="1780" height="420" loading="lazy"></figure>
+      </article>
+
+      <article class="walk-step">
+        <div>
+          <span class="num">2</span>
+          <h3>Explore: the data speaks first.</h3>
+          <p>The table is analyzed on your computer, without a model. The first finding is the one that matters: the file mixes single rows with subtotals and grand totals. Summing every row would count the same cars <strong>2.99 times</strong>.</p>
+          <p class="muted">Every value comes from a stored query that you can open and run again. Computed values are marked as such: they are not in the original.</p>
+        </div>
+        <figure class="shot"><img src="assets/img/screens/findings-crop.webp" alt="Screenshot: the Explore step with the box “Auffälliges”, listing computed values. The first line warns that the sum over all rows would be 2.99 times the total because subtotals and totals are rows too." width="1560" height="960" loading="lazy"></figure>
+      </article>
+
+      <article class="walk-step">
+        <div>
+          <span class="num">3</span>
+          <h3>Theses, not answers.</h3>
+          <p>Only after you say “yes, send it” does the model see the approved material. It proposes theses, each with what carries it. A thesis is a proposal, drawn dashed, until you choose it.</p>
+        </div>
+        <figure class="shot"><img src="assets/img/screens/theses-crop.webp" alt="Screenshot: thesis cards with dashed frames. Thesis 1 says that the much higher figure from the web analysis cannot be reproduced from the rows of the data set; a bar shows 545,142." width="1560" height="980" loading="lazy"></figure>
+      </article>
+
+      <article class="walk-step">
+        <div>
+          <span class="num">4</span>
+          <h3>Check: one claim holds, one does not.</h3>
+          <p>Each claim is pinned to its line in the text. Figures are checked against the data with a stored query, computed by the app, never by the model.</p>
+          <div class="figures">
+            <div class="figure-box"><div class="value">545,142</div><div class="label">electric cars in 2025, from the 12 grand-total rows. Supports “around 545,000”.</div></div>
+            <div class="figure-box figure-box--wrong"><div class="value">1.6 million</div><div class="label">contradicted: 1,631,168 is what you get when model rows, subtotals and totals are summed together.</div></div>
+          </div>
+        </div>
+        <figure class="shot"><img src="assets/img/screens/check-crop.webp" alt="Screenshot: the Check step. One claim is marked supported, one contradicted. The evidence explains that the stored query gives 545,142, while the same query over all rows including 156 subtotal and 12 total rows gives 1,631,168." width="1560" height="1420" loading="lazy"></figure>
+      </article>
+
+      <article class="walk-step">
+        <div>
+          <span class="num">5</span>
+          <h3>Build: one story, every channel.</h3>
+          <p>From the confirmed claims, the Story Builder drafts a web article and a radio two-way, each in its format template. Every sentence carries the claims it rests on. Sentences whose evidence did not hold are dropped, and the draft says so.</p>
+          <p class="muted">Format templates are plain Markdown. A newsroom adds its own formats without writing code.</p>
+        </div>
+        <figure class="shot"><img src="assets/img/screens/draft-web-crop.webp" alt="Screenshot: the Build step with a draft web article headlined “545.000 Elektroautos: Netz-Auswertung nennt 1,6 Millionen”. Each sentence is followed by markers that reference its claims." width="1560" height="1510" loading="lazy"></figure>
+      </article>
+
+      <article class="walk-step">
+        <div>
+          <span class="num">6</span>
+          <h3>Release: people sign off.</h3>
+          <p>Release is blocked until the required quality gates are decided by a person: <span class="tag">G03</span> source and evidence check and <span class="tag">G14</span> sign-off and release. Then the story goes out as Markdown, HTML, Word or as a draft for your content management system, with its list of sources and their hashes.</p>
+          <p class="muted">Open Journalist never publishes on its own.</p>
+        </div>
+        <figure class="shot"><img src="assets/img/screens/release-crop.webp" alt="Screenshot: the Release step. The release checklist says two required gates are open, G03 and G14, each with a dashed “open” label and a “decide” button; the export buttons wait." width="1560" height="1600" loading="lazy"></figure>
+      </article>
+    </div>
+    <p class="caption" style="margin-top:48px">Screenshots of the prototype as of 25 November 2026, with its German interface (English is available in Settings). The demo text is synthetic and marked as such; the figure 545,000 in it is computed from the table. The person shown as deciding, “Alex Beispiel”, is fictional.</p>
+  </div>
+</section>
+
+<!-- Principle -->
+<section class="section" id="principle">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The principle</span>
+      <h2>The machine proposes. You decide.</h2>
+      <p class="lead">Every statement shows what it rests on. What is missing stays visible as a gap and is never filled with generated text.</p>
+    </div>
+    <div class="states">
+      <div class="state state--proposed"><span class="eyebrow">Proposed</span><div class="glyph"><div class="g-dash"></div></div><p>A thesis of the agent, still open.</p></div>
+      <div class="state"><span class="eyebrow">Supported</span><div class="glyph"><div class="g-thread"></div></div><p>Evidence in the data or the material.</p></div>
+      <div class="state state--contradicted"><span class="eyebrow">Contradicted</span><div class="glyph"><div class="g-line"></div></div><p>Does not hold up to the check.</p></div>
+      <div class="state state--proposed"><span class="eyebrow">Gap</span><div class="glyph"><div class="g-gap"></div></div><p>No evidence. Stays visibly open.</p></div>
+      <div class="state state--released"><span class="eyebrow">Released</span><div class="glyph"><div class="g-stamp"></div></div><p>Signed off by you.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Why / USP -->
+<section class="section section--warm" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">What makes it different</span>
+      <h2>A harness for journalism, not another chatbot.</h2>
+      <p class="lead">General-purpose AI tools optimize for answers. Journalism needs answers it can defend. Open Journalist is built around the rules of the newsroom, and enforces them in code.</p>
+    </div>
+    <div class="grid-2">
+      <article class="card">
+        <img src="assets/img/readme/evidence-light.webp" alt="A document with a pinned line, joined by a solid thread to a confirmed figure, 545,142. A second statement, dashed, leads to a dashed circle labelled gap." width="1280" height="720" loading="lazy">
+        <div class="card-body">
+          <span class="eyebrow">Evidence binding</span>
+          <h3>Every statement shows its evidence.</h3>
+          <p>Each claim points to the exact passage, line, page or second of a recording it came from. Figures come from stored queries on approved tables. A statement without evidence is shown as a gap.</p>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/img/readme/proposes-decides-light.webp" alt="A journalist reads a sheet of paper. Beside her, a dashed card marked proposed is joined to a solid card marked confirmed, which carries the stamp of gate G14." width="1280" height="720" loading="lazy">
+        <div class="card-body">
+          <span class="eyebrow">Human sign-off</span>
+          <h3>The agent proposes, people decide.</h3>
+          <p>Anything the agent adds stays a proposal until a person confirms it. Eighteen quality gates, from the source check to legal review, block release until the responsible person has decided them.</p>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/img/readme/material-stays-yours-light.webp" alt="A frame labelled this device, T0, holds a stack of files and a laptop. A dashed thread leads out to a model, labelled public only." width="1280" height="720" loading="lazy">
+        <div class="card-body">
+          <span class="eyebrow">Source protection</span>
+          <h3>Your material stays yours.</h3>
+          <p>Everything lives on your machine, in open formats. The sensitivity of the material decides which model may see it, and source-protected material never goes to a cloud service. No telemetry, no crash reports.</p>
+        </div>
+      </article>
+      <article class="card">
+        <img src="assets/img/readme/one-core-light.webp" alt="The Open Journalist mark with threads to one person, a team of two and a newsroom screen." width="1280" height="720" loading="lazy">
+        <div class="card-body">
+          <span class="eyebrow">Model-agnostic</span>
+          <h3>One core, from one person to a network.</h3>
+          <p>The same core serves a freelancer, a small team and a media organization. It works with local models, your organization's own inference or a provider you choose. Tools connect through open standards such as MCP.</p>
+        </div>
+      </article>
+    </div>
+    <div class="note note--dashed" style="margin-top:40px">
+      <strong>What it does not promise</strong>
+      <p>It is not a truth machine, it does not publish on its own, and it does not replace your content management system, your archive or your agency.</p>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Six steps on one thread.</h2>
+      <p class="lead">The thread is dashed until a person confirms, and solid after.</p>
+    </div>
+    <ol class="flow">
+      <li><span class="dot">1</span><div><h4>Bring in</h4><p>Documents, scans, recordings and data go into the story's store, with their origin and a sensitivity class you set.</p></div></li>
+      <li><span class="dot">2</span><div><h4>Open up</h4><p>Transcription and text recognition run locally. Data is queried read-only, after you approve it.</p></div></li>
+      <li><span class="dot">3</span><div><h4>Agent proposes</h4><p>Events, people, organizations and claims, each pinned to its passage. Patterns become leads, not findings.</p></div></li>
+      <li class="solid"><span class="dot">4</span><div><h4>You confirm</h4><p>Check each proposal side by side with its evidence. What you confirm forms the story graph.</p></div></li>
+      <li class="solid"><span class="dot">5</span><div><h4>Build</h4><p>Drafts in several forms, from web to radio to print, all from the same confirmed claims.</p></div></li>
+      <li class="solid"><span class="dot">6</span><div><h4>Sign off</h4><p>The required gates are passed, then the story goes to your CMS as a draft, with its evidence record.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- Privacy -->
+<section class="section section--soft" id="privacy">
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow">Sensitivity routing</span>
+      <h2>Confidentiality is enforced, not hoped for.</h2>
+      <p>Every file carries a sensitivity class. Every model endpoint has a list of classes it may receive. A request that would send material to an endpoint that is not allowed to see it is refused before it leaves your computer, and the refusal is recorded.</p>
+      <table class="classes">
+        <thead><tr><th>Class</th><th>Meaning</th><th>May go to</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag">T0</span></td><td>Source protection</td><td>Only a model on your own computer</td></tr>
+          <tr><td><span class="tag">T1</span></td><td>Confidential</td><td>Endpoints you have allowed for it</td></tr>
+          <tr><td><span class="tag">T2</span></td><td>Internal</td><td>Endpoints you have allowed for it</td></tr>
+          <tr><td><span class="tag tag--dashed">public</span></td><td>Public</td><td>Any configured endpoint, and the web search</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <figure class="shot"><img src="assets/img/screens/privacy-crop.webp" alt="Screenshot: Settings, Privacy. A table “Wohin Material geht” shows for each class the endpoint: T0 nowhere, refused; T1, T2 and public to the team model, an API endpoint that leaves this computer." width="1290" height="970" loading="lazy"></figure>
+  </div>
+</section>
+
+<!-- Story graph -->
+<section class="section" id="story-graph">
+  <div class="wrap split split--rev">
+    <div>
+      <span class="eyebrow">Under the hood</span>
+      <h2>The story graph.</h2>
+      <p>At the heart of Open Journalist is the story graph: events are its nodes, and the relations between them (follows, causes, updates, contradicts) are its edges. Claims, sources and evidence hang on the events.</p>
+      <p>It is the journalistic substrate of a story: what research distills from raw material. From its confirmed part you build the story in any form, today a text and a radio script, tomorrow a format nobody has asked for yet.</p>
+      <p class="muted">The idea comes from structured journalism and from the working group “Unit of News” at the AI for Media Network's symposium in Tutzing, 2024.</p>
+      <a class="btn" href="docs/concepts.html">Read the concepts</a>
+    </div>
+    <img src="assets/img/readme/story-graph-light.webp" alt="A story graph of events joined by relations, one still dashed. Threads lead from it to an online text, a radio script and a mobile view, and a dashed thread to the next format." width="1600" height="704" loading="lazy" style="mix-blend-mode:multiply">
+  </div>
+</section>
+
+<!-- Open -->
+<section class="section section--ink" id="open">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">How it grows</span>
+      <h2>Built in the open, for every newsroom.</h2>
+      <p class="lead">Journalism needs AI tools it can inspect, run on its own terms and adapt. A shared foundation that freelancers, small teams, public broadcasters and publishers can all use and improve.</p>
+    </div>
+    <div class="pillars">
+      <div><h3>Formats as text</h3><p>Format templates and story recipes are Markdown files. A new format or a house rule needs no code.</p></div>
+      <div><h3>Your model</h3><p>The endpoint is a setting: operated sovereignly, at a European provider or locally. Nothing is hard-coded.</p></div>
+      <div><h3>Source protection</h3><p>Source-protected material goes only to a model on your own computer. Keys live in the operating system's keychain.</p></div>
+      <div><h3>Open licence</h3><p>European Union Public Licence 1.2. The project can later be handed to a neutral operating body.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Roadmap -->
+<section class="section section--warm" id="roadmap">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Potential and scale</span>
+      <h2>From the kitchen table to the newsroom.</h2>
+    </div>
+    <ol class="roadmap">
+      <li class="now"><span class="when">Today</span><h4>Prototype on your own laptop</h4><p>From material to a signed-off story and its handover, on one computer.</p></li>
+      <li><span class="when">2027, first half</span><h4>Tool for freelance journalists</h4><p>The full gate cockpit, sensitivity routing, MCP, version history, signed builds. Field test with one desk.</p></li>
+      <li><span class="when">2027, second half</span><h4>Teams and whole newsrooms</h4><p>Roles, team repositories, shared inference, connection to archive and CMS.</p></li>
+      <li><span class="when">2028</span><h4>A network of newsrooms</h4><p>A Trusted Content Pool across organizations: signed attestations, never raw material.</p></li>
+    </ol>
+    <p class="caption" style="margin-top:36px">Calendar targets are orientation, not commitments.</p>
+  </div>
+</section>
+
+<!-- Origin -->
+<section class="section">
+  <div class="wrap split">
+    <div>
+      <img class="quote-mark" src="assets/img/mark.svg" alt="" width="64" height="48">
+      <span class="eyebrow" style="display:block">Where it comes from</span>
+      <h2>Robin's concept, built in 46 hours.</h2>
+      <p>Open Journalist took shape in the <a href="https://aiformedia.network/en/">AI for Media Network</a>, a network of AI practitioners from media organizations in Germany, Austria and Switzerland. The idea and the first product concept come from Robin Greene. At the AI for Media Hackathon 2026 in Munich, a team of six people and their agents turned it into a working prototype.</p>
+      <p class="muted">Open Journalist is a personal initiative, not a project of any broadcaster or publisher.</p>
+      <a class="btn" href="blog/ai-for-media-hackathon-2026.html">Read the hackathon story</a>
+    </div>
+    <div class="fact-row" style="margin:0">
+      <div><div class="value">46 h</div><div class="label">from the opening on 23 November to the end of hacking on 25 November</div></div>
+      <div><div class="value">6</div><div class="label">people, working with their coding agents</div></div>
+      <div><div class="value">130</div><div class="label">merged pull requests, as of the morning of the presentation</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section section--soft">
+  <div class="wrap cta">
+    <div>
+      <span class="eyebrow">Try it</span>
+      <h2>The newsroom you never had.</h2>
+      <p class="lead">For every reporter, freelancers included: a counterpart that thinks along, pushes back and finds the evidence. For web, radio, television and print.</p>
+      <div class="btn-row">
+        <a class="btn btn--solid" href="docs/install.html">Install Open Journalist</a>
+        <a class="btn" href="docs/guide.html">Read the user guide</a>
+      </div>
+    </div>
+    <img src="assets/img/illu/journalist-laptop.webp" alt="Illustration: the journalist sits cross-legged with her laptop, which shows the Open Journalist mark." width="838" height="900" loading="lazy">
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="assets/img/logo-dark.svg" alt="open journalist" width="160" height="22">
+        <p>The open-source AI harness for journalism. Agents propose, people decide.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul><li><a href="#demo">Demo</a></li><li><a href="#why">Why Open Journalist</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#roadmap">Roadmap</a></li></ul>
+      </div>
+      <div>
+        <h4>Docs</h4>
+        <ul><li><a href="docs/install.html">Installation</a></li><li><a href="docs/guide.html">User guide</a></li><li><a href="docs/concepts.html">Concepts</a></li><li><a href="blog/">Blog</a></li></ul>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <ul><li><a href="https://github.com/open-journalist/open-journalist">GitHub</a></li><li><a href="https://github.com/open-journalist/open-journalist/blob/main/CONTRIBUTING.md">Contributing</a></li><li><a href="https://github.com/open-journalist/open-journalist/blob/main/SECURITY.md">Security</a></li><li><a href="https://aiformedia.network/en/">AI for Media Network</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Robin Greene and contributors · EUPL-1.2</span>
+      <span>No cookies, no tracking, fonts served from this site.</span>
+    </div>
+  </div>
+</footer>
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>

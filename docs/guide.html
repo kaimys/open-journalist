@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>User guide · Open Journalist</title>
+<meta name="description" content="How to work with Open Journalist: from the first file to a signed-off story, with a worked example and your own format templates.">
+<link rel="icon" href="../assets/img/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="Open Journalist, home"><img src="../assets/img/logo.svg" alt="open journalist" width="160" height="22"></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="../#demo">Demo</a>
+      <a href="../#why">Why</a>
+      <a href="./" aria-current="page">Docs</a>
+      <a href="../blog/">Blog</a>
+      <a href="https://github.com/open-journalist/open-journalist">GitHub</a>
+      <a class="btn btn--solid" href="install.html">Get started</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Documentation · User guide</span>
+    <h1>Working with Open Journalist</h1>
+    <p class="lead">From the first file to a signed-off story in five steps. With a worked example you can follow on your own computer, and a format template of your own.</p>
+  </div>
+</div>
+
+<main id="main" class="wrap docs">
+  <aside class="docs-nav" aria-label="Documentation">
+    <h4>Documentation</h4>
+    <ul>
+      <li><a href="./">Overview</a></li>
+      <li><a href="install.html">Installation</a></li>
+      <li><a href="guide.html" aria-current="page">User guide</a>
+        <ul>
+          <li><a href="#steps">The five steps</a></li>
+          <li><a href="#start">1 Start</a></li>
+          <li><a href="#explore">2 Explore</a></li>
+          <li><a href="#check">3 Check</a></li>
+          <li><a href="#build">4 Build</a></li>
+          <li><a href="#release">5 Release</a></li>
+          <li><a href="#example">Worked example</a></li>
+          <li><a href="#formats">Your own format</a></li>
+          <li><a href="#recipes">Story recipes</a></li>
+          <li><a href="#settings">Settings</a></li>
+          <li><a href="#faq">Questions</a></li>
+        </ul>
+      </li>
+      <li><a href="concepts.html">Concepts</a></li>
+    </ul>
+  </aside>
+
+  <article class="prose">
+    <h2 id="steps">The five steps</h2>
+    <p>A project in Open Journalist is one story, or one investigation that may become several. Its sidebar always shows the same steps. The interface is available in English and German; the screenshots here show the German one, with the German labels in parentheses.</p>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Step</th><th>What you do</th><th>What the machine does</th></tr></thead>
+      <tbody>
+        <tr><td><strong>1 Start</strong></td><td>Hand over material, say what it is about</td><td>Stores every file unchanged, with its hash</td></tr>
+        <tr><td><strong>2 Explore</strong> <span class="muted">(Explorieren)</span></td><td>Set how confidential each file is, ask questions, choose a thesis</td><td>Analyzes tables locally, proposes theses with their evidence</td></tr>
+        <tr><td><strong>3 Check</strong> <span class="muted">(Prüfen)</span></td><td>Confirm or discard each claim, mark a thesis as checked</td><td>Finds claims in the material and checks them against data and sources</td></tr>
+        <tr><td><strong>4 Build</strong> <span class="muted">(Bauen)</span></td><td>Choose formats, edit and accept the draft</td><td>Drafts the story in each format, every sentence with its claims</td></tr>
+        <tr><td><strong>5 Release</strong> <span class="muted">(Freigeben)</span></td><td>Decide the quality gates, export</td><td>Blocks the export until the required gates are decided</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>On the right of every step sits the <strong>assistant</strong>. You can ask it about your material at any time; it knows which step you are in and what is on screen. Below the steps you see <strong>your theses</strong>, and at the very bottom an activity bar shows what is running in the background.</p>
+
+    <div class="note note--dashed">
+      <strong>One rule throughout</strong>
+      <p>Whatever the agent produces is a proposal, drawn with a dashed frame, until you confirm it. Nothing is sent to a model before you have said yes, and nothing is published by Open Journalist at all.</p>
+    </div>
+
+    <h2 id="start">1 Start: “Give me what you have.”</h2>
+    <p>Create a project on the Projects page with <strong>New project</strong>. A title is enough. The project opens with one field: drop files into it, paste links, type a sentence about what you are after, or press the microphone and speak. Speech is transcribed on your computer when the local speech model is installed.</p>
+    <figure class="shot"><img src="../assets/img/screens/start-crop.webp" alt="Screenshot: the start page with “Gib mir, was du hast.” and one input field for files, links, text or voice." width="1780" height="420" loading="lazy"></figure>
+    <p>Open Journalist takes text files and Markdown, Word, ODT, RTF and PDF; tables as CSV, TSV, Excel and ODS; images, where text recognition can run after your approval; audio and video; and web pages behind links. Every original is kept byte for byte.</p>
+
+    <h2 id="explore">2 Explore: understand the material</h2>
+    <h3>Say how confidential each file is</h3>
+    <p>Before anything is read, the assistant asks for each file: <em>How confidential is this file?</em> Your choice is the approval to open it, recorded with your name and the time.</p>
+    <figure class="shot" style="max-width:420px"><img src="../assets/img/screens/approval-crop.webp" alt="Screenshot: two approval cards in the assistant, “Wie vertraulich ist diese Datei?”, each with the buttons Öffentlich, Intern (T2), Vertraulich (T1) and Quellenschutz (T0)." width="792" height="790" loading="lazy"></figure>
+    <dl class="kv">
+      <dt>public</dt><dd>Public material. May go to any configured model and to the web search.</dd>
+      <dt>T2</dt><dd>Internal. Goes only to endpoints you allowed for internal material.</dd>
+      <dt>T1</dt><dd>Confidential. Goes only to endpoints you allowed for confidential material.</dd>
+      <dt>T0</dt><dd>Source protection. Never leaves your computer; only a local model may see it.</dd>
+    </dl>
+    <p>Hover over a button to see which model the file may then go to.</p>
+
+    <h3>Let the data speak</h3>
+    <p>Three actions sit at the bottom of the assistant. <strong>Data analysis</strong> (Datenanalyse) and <strong>Show anomalies</strong> (Auffälliges zeigen) run on your computer without a model: totals per year, the course over time as charts, outliers, strong changes, and, importantly, rows that are subtotals or grand totals and would be counted twice. Each result is a box in the middle, and each figure has its stored query.</p>
+    <figure class="shot"><img src="../assets/img/screens/findings-crop.webp" alt="Screenshot: the box “Auffälliges” with computed values. The first line warns that the sum over all rows would be 2.99 times the total because subtotals and totals are rows too." width="1560" height="960" loading="lazy"></figure>
+
+    <h3>Ask, and find theses</h3>
+    <p>Type a question into the assistant, for example <em>How many electric cars were registered in January 2025?</em> Before the first request, one line names the model, the endpoint and exactly what would be sent, for example the question, the text of an approved document and only the column names of a table. Answer <strong>Yes</strong> to send it. Figures in the answer come from queries the app runs, not from the model's text.</p>
+    <p><strong>Find theses</strong> (Thesen finden) asks the model for up to three theses from your approved material, each with the material that carries it. Choose one with <strong>Choose</strong> (Auswählen), discard the others, or write your own. Check stays locked until a thesis is chosen.</p>
+    <figure class="shot"><img src="../assets/img/screens/theses-crop.webp" alt="Screenshot: thesis cards with dashed frames, each with a headline, explanation, a small chart of its stored query and the buttons Verwerfen and Auswählen." width="1560" height="980" loading="lazy"></figure>
+
+    <h2 id="check">3 Check: what holds?</h2>
+    <p>For each chosen thesis, press <strong>Search the material for claims</strong> (Aussagen im Material suchen). The verification agent splits the approved texts into atomic claims, one fact per claim, each anchored to its verbatim quote and line. A claim whose quote cannot be found in the original is discarded, not guessed.</p>
+    <p>Each claim gets a finding:</p>
+    <dl class="kv">
+      <dt>supported</dt><dd>Evidence in the data or in another approved source.</dd>
+      <dt>contradicted</dt><dd>The evidence says otherwise. Shown struck through, with a heavier frame.</dd>
+      <dt>no evidence</dt><dd>A gap. Nothing in the material speaks to it, and it stays visible.</dd>
+    </dl>
+    <p>Open <strong>Evidence</strong> (Belege) to see the quote, the stored query and its result side by side. For a figure, Open Journalist also shows what a naive sum over every row would give, which is how double counting comes to light.</p>
+    <figure class="shot"><img src="../assets/img/screens/check-crop.webp" alt="Screenshot: Check step with a supported and a contradicted claim. The evidence of the contradicted one explains that 1.6 million equals the sum over all rows including subtotals and totals, 1,631,168." width="1560" height="1420" loading="lazy"></figure>
+    <p>Then decide: <strong>Confirm</strong> (Bestätigen) or <strong>Discard</strong> (Verwerfen) each claim. For public claims, <strong>Check on the web</strong> (Im Web prüfen) runs a search you see before it is sent and rates every source it finds. When you are done, <strong>Mark as checked</strong> (Als geprüft markieren) and continue with <strong>Finish the check and write the article</strong>.</p>
+
+    <h2 id="build">4 Build: one story, several formats</h2>
+    <p>Build shows <em>your story</em>: the checked theses with their confirmed claims, figures and passages. Choose one or more <strong>formats</strong> and what the machine should write:</p>
+    <dl class="kv">
+      <dt>Full text</dt><dd>The machine writes the text, you revise it.</dd>
+      <dt>Outline</dt><dd>Only subheadings and points with their evidence; you write the text yourself.</dd>
+      <dt>Research dossier</dt><dd>A pitch to an editor: what the research shows and what the piece could look like.</dd>
+    </dl>
+    <p>Every sentence of a draft carries markers for the claims it rests on. Sentences whose evidence did not hold are dropped, and the draft tells you how many and why. Edit the text directly, mark a passage to have the assistant revise it, or copy it as Markdown.</p>
+    <figure class="shot"><img src="../assets/img/screens/draft-web-crop.webp" alt="Screenshot: a draft web article headlined “545.000 Elektroautos: Netz-Auswertung nennt 1,6 Millionen”, each sentence followed by claim markers such as [1] and [3]." width="1560" height="1510" loading="lazy"></figure>
+
+    <h2 id="release">5 Release: people sign off</h2>
+    <p>Release shows the story as it will leave, with its list of sources, each with file, line, quote and SHA-256 hash. On the right is the release checklist. Two gates are required for every story:</p>
+    <ul>
+      <li><span class="tag">G03</span> <strong>Source and evidence check</strong>, typically decided by the reporter.</li>
+      <li><span class="tag">G14</span> <strong>Sign-off and release</strong>, typically decided by the editor on duty.</li>
+    </ul>
+    <p>Press <strong>Decide</strong> (Entscheiden), set the outcome, keep or change the role, add a note and save. The decision is stored with your name, role and time, and refers to a fingerprint of the story: if the story changes afterwards, the decision no longer counts. Further gates, such as legal review or a request for comment, can be switched on per story.</p>
+    <figure class="shot"><img src="../assets/img/screens/release-crop.webp" alt="Screenshot: the Release step with the story, the release checklist “2 Pflicht-Gates offen: G03, G14”, the name field and the export buttons, which wait." width="1560" height="1600" loading="lazy"></figure>
+    <p>Once the required gates are decided, the export unlocks: <strong>Markdown</strong> or an <strong>HTML page</strong> with a list of sources, a <strong>Word file</strong>, or a draft exchange file for a content management system. Files are written to the data folder of the project. Publishing stays in your target system.</p>
+
+    <hr>
+
+    <h2 id="example">Worked example: “E-Auto-Check”</h2>
+    <p>The demo case ships with the source code. It is a synthetic short text with three claims about new registrations of electric cars, plus a table of new registrations by month, segment and model, 2013 to October 2026. The text is marked as synthetic in its first line; the figure 545,000 in it is computed from the table.</p>
+    <ol>
+      <li><strong>Start with the demo.</strong> Run <code>start.bat --demo</code> on Windows or <code>./start.sh --demo</code> on macOS. To keep it apart from your own projects, set <code>OPENJOURNALIST_DATA_DIR</code> to an empty folder first. The project “E-Auto-Check (Demo)” opens in Explore with both files waiting for a class.</li>
+      <li><strong>Classify.</strong> Mark both files as <em>public</em>. The text shows its eight lines; line 5 says 545,000, line 6 says 1.6 million, line 7 claims that charging points have doubled.</li>
+      <li><strong>Analyze.</strong> Open the table and press <em>Data analysis</em>, then <em>Show anomalies</em>. The first finding: the sum over all rows for 2025 would be 8,555,794, almost three times the 2,857,591 of the grand-total rows, because subtotals and totals are rows too. The figures for 2025: 545,142 electric cars, +43.2 % over 2024.</li>
+      <li><strong>Ask.</strong> Try <em>Where does the figure 545,000 in line 5 come from?</em> The answer names the stored query and its value.</li>
+      <li><strong>Find theses.</strong> Expect one thesis on the double counting, one on the record year and one on the charging points. Theses differ from run to run. Choose the one on the 1.6 million.</li>
+      <li><strong>Check.</strong> Search the claims. The 545,000 are <em>supported</em> by the stored query (545,142 from the 12 grand-total rows). The 1.6 million are <em>contradicted</em>: the same query over every row, including 156 subtotal and 12 grand-total rows, gives 1,631,168. The charging points stay a <em>gap</em>: there is no material about them. Confirm both claims and mark the thesis as checked.</li>
+      <li><strong>Build.</strong> Choose the web article and the radio two-way. Every sentence cites the claims it rests on; the charging points get no invented source.</li>
+      <li><strong>Release.</strong> Decide G03 and G14 with a short note each. The export to Markdown and HTML unlocks.</li>
+    </ol>
+    <p class="muted">Model steps take from under a minute to a few minutes each, depending on your endpoint. The local steps take seconds.</p>
+
+    <h2 id="formats">Example: your own format template</h2>
+    <p>A format is a Markdown file with a short header and plain instructions: tone, structure, length. Open Journalist puts it in front of the writer's own instructions; it decides tone, language and length, and it never relaxes the rule that every sentence needs its evidence. Edit the built-in templates or add your own under <strong>Settings → Editorial → Format templates</strong>. A saved template with the same <code>id</code> replaces the built-in one.</p>
+    <p>A fictional example for a local newsletter:</p>
+<pre><code>---
+id: newsletter-local
+name: Local newsletter item
+channel: Newsletter
+spoken: false
+---
+
+# Tone
+
+Plain and friendly, written for neighbors, not experts.
+Short sentences. Explain every figure in one half-sentence.
+
+# Structure
+
+1. **Headline:** at most eight words, no question.
+2. **What happened:** two sentences.
+3. **Why it matters here:** two to three sentences.
+4. **What is still open:** one sentence per gap.
+
+# Length
+
+120 to 180 words.</code></pre>
+    <p>The built-in templates (web article, radio two-way, TV piece, long-form feature) are examples, not house rules of any newsroom. Replace them with yours.</p>
+
+    <h2 id="recipes">Story recipes and skills</h2>
+    <p>Editorial knowledge lives in Markdown files too. A <strong>story recipe</strong> describes what a kind of investigation must clear: the questions for the interview at the start, the criteria for a story, the checks. Three draft recipes come with the prototype: <em>find anomalies</em>, <em>test a hypothesis</em> and the <em>two-source principle</em>. Every project has one recipe, which you can change at any time; the choice is recorded.</p>
+    <p>Each step also has a <strong>phase skill</strong> that tells the agent how to work in that step, and a <strong>system prompt</strong> with journalistic standards goes in front of every request. You can read and edit all of them in Settings. Your own skills are used only after a person has approved their exact content, and a skill can never relax a quality gate.</p>
+
+    <h2 id="settings">Settings at a glance</h2>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Rubric</th><th>What you set there</th></tr></thead>
+      <tbody>
+        <tr><td>Profile</td><td>Your name and role, used for approvals and decisions</td></tr>
+        <tr><td>Models</td><td>Endpoints, model names, keys, allowed sensitivity classes, connection test</td></tr>
+        <tr><td>Privacy</td><td>Where material of each class goes, and every refused request</td></tr>
+        <tr><td>Web search</td><td>The search service for web checks of public claims</td></tr>
+        <tr><td>News sources</td><td>Sources connected over the Model Context Protocol</td></tr>
+        <tr><td>Language and audio</td><td>Language of the interface; speech model for voice input, local or through an API</td></tr>
+        <tr><td>Editorial</td><td>System prompt, skills, story recipes and format templates</td></tr>
+        <tr><td>Info</td><td>Version, platform and log files</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2 id="faq">Questions</h2>
+    <h3>Does the model calculate my figures?</h3>
+    <p>No. For tables, the model may write a query; the app checks that it only reads, runs it locally and shows query and result. A figure the model writes itself is marked as unchecked.</p>
+    <h3>What leaves my computer?</h3>
+    <p>Only what you approve, only to endpoints that are allowed to receive its class, and the line before each request says what goes where. Source-protected material (<code>T0</code>) never goes to an online service. There is no telemetry.</p>
+    <h3>Can I use it without a model?</h3>
+    <p>Partly. Collecting, classifying, previews, the table analysis and anomalies run locally. Theses, claims and drafts need a model.</p>
+    <h3>Which models work?</h3>
+    <p>Any endpoint with an OpenAI-compatible chat API, preferably with tool calling, run by your organization, a provider you choose, or locally. The quality of theses and drafts depends on the model.</p>
+
+    <div class="btn-row">
+      <a class="btn btn--solid" href="concepts.html">Next: the concepts →</a>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom" style="margin-top:0;border-top:0;padding-top:0">
+      <span>© 2026 Robin Greene and contributors · EUPL-1.2</span>
+      <span><a href="../">Home</a> · <a href="./">Docs</a> · <a href="../blog/">Blog</a> · <a href="https://github.com/open-journalist/open-journalist">GitHub</a></span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>

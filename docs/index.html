@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Documentation · Open Journalist</title>
+<meta name="description" content="Documentation for Open Journalist: installation, user guide with a worked example, and the concepts behind the harness.">
+<link rel="icon" href="../assets/img/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="Open Journalist, home"><img src="../assets/img/logo.svg" alt="open journalist" width="160" height="22"></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="../#demo">Demo</a>
+      <a href="../#why">Why</a>
+      <a href="./" aria-current="page">Docs</a>
+      <a href="../blog/">Blog</a>
+      <a href="https://github.com/open-journalist/open-journalist">GitHub</a>
+      <a class="btn btn--solid" href="install.html">Get started</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Documentation</span>
+    <h1>Everything you need to get going</h1>
+    <p class="lead">Install it, follow the worked example, then make it yours with your own formats and recipes.</p>
+  </div>
+</div>
+
+<main id="main" class="wrap docs">
+  <aside class="docs-nav" aria-label="Documentation">
+    <h4>Documentation</h4>
+    <ul>
+      <li><a href="./" aria-current="page">Overview</a></li>
+      <li><a href="install.html">Installation</a></li>
+      <li><a href="guide.html">User guide</a></li>
+      <li><a href="concepts.html">Concepts</a></li>
+    </ul>
+    <h4>More</h4>
+    <ul>
+      <li><a href="https://github.com/open-journalist/open-journalist/blob/main/docs/README.md">Full documentation on GitHub</a></li>
+      <li><a href="https://github.com/open-journalist/open-journalist/blob/main/docs/development.md">Developer docs</a></li>
+      <li><a href="https://github.com/open-journalist/open-journalist/blob/main/docs/roadmap.md">Roadmap</a></li>
+    </ul>
+  </aside>
+
+  <div class="prose" style="max-width:none">
+    <div class="cards-link">
+      <a href="install.html">
+        <span class="eyebrow">Start here</span>
+        <h3>Installation</h3>
+        <p>Packaged builds for Windows and macOS, running from the source code, connecting a model, self-test and log files.</p>
+      </a>
+      <a href="guide.html">
+        <span class="eyebrow">For journalists</span>
+        <h3>User guide</h3>
+        <p>The five steps from the first file to a signed-off story, with screenshots, a worked example and your own format template.</p>
+      </a>
+      <a href="guide.html#example">
+        <span class="eyebrow">Example</span>
+        <h3>Worked example: E-Auto-Check</h3>
+        <p>Follow the demo case on your own computer: 545,142 electric cars, a contradicted 1.6 million and a gap that stays a gap.</p>
+      </a>
+      <a href="concepts.html">
+        <span class="eyebrow">Background</span>
+        <h3>Concepts</h3>
+        <p>The story graph, evidence and states, the seven phases, the 18 quality gates, sensitivity classes and the Trusted Content Pool.</p>
+      </a>
+    </div>
+
+    <div class="note">
+      <strong>Status: early prototype</strong>
+      <p>Open Journalist was built as a prototype in November 2026. Features, labels and behavior will change. Do not use it with real research material yet. The repository on GitHub holds the full product concept, the architecture and its decision records, and the developer documentation.</p>
+    </div>
+
+    <h2>Quick start</h2>
+    <p>With Git, Python 3.11+ and Node.js 22 installed:</p>
+<pre><code>git clone https://github.com/open-journalist/open-journalist.git
+cd open-journalist
+./start.sh --demo     <span class="c"># macOS, Linux</span>
+start.bat --demo      <span class="c"># Windows</span></code></pre>
+    <p>Open Journalist opens in your browser with the demo project “E-Auto-Check (Demo)”. Add a model endpoint under Settings → Models to use theses, claims and drafts. Details in the <a href="install.html">installation guide</a>.</p>
+
+    <h2>Contributing</h2>
+    <p>Corrections from newsroom practice are the most valuable contribution at this stage: what in the workflow, the gates or the scenarios does not match how your newsroom works? Open an issue with the template “Correction from practice”. For code, read <a href="https://github.com/open-journalist/open-journalist/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>; coding agents start with <a href="https://github.com/open-journalist/open-journalist/blob/main/AGENTS.md">AGENTS.md</a>.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom" style="margin-top:0;border-top:0;padding-top:0">
+      <span>© 2026 Robin Greene and contributors · EUPL-1.2</span>
+      <span><a href="../">Home</a> · <a href="./">Docs</a> · <a href="../blog/">Blog</a> · <a href="https://github.com/open-journalist/open-journalist">GitHub</a></span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>

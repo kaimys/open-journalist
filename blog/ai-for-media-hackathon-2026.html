@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>46 hours in Munich: Open Journalist at the AI for Media Hackathon 2026</title>
+<meta name="description" content="How a concept for an open-source AI harness for journalism became a working prototype in 46 hours at the AI for Media Hackathon 2026 in Munich.">
+<meta property="og:title" content="46 hours in Munich: Open Journalist at the AI for Media Hackathon 2026">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2026-11-25">
+<link rel="icon" href="../assets/img/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="Open Journalist, home"><img src="../assets/img/logo.svg" alt="open journalist" width="160" height="22"></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="../#demo">Demo</a>
+      <a href="../#why">Why</a>
+      <a href="../docs/">Docs</a>
+      <a href="./" aria-current="page">Blog</a>
+      <a href="https://github.com/open-journalist/open-journalist">GitHub</a>
+      <a class="btn btn--solid" href="../docs/install.html">Get started</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <header class="article-head">
+      <span class="eyebrow">Blog · Hackathon</span>
+      <h1>46 hours in Munich: from concept to prototype</h1>
+      <p class="lead">At the AI for Media Hackathon 2026, Open Journalist went from a stack of design documents to an application that checks a claim against 60,000 rows of data, drafts a radio piece and refuses to export until a person has signed off.</p>
+      <div class="byline meta"><span>25 November 2026</span><span>The Open Journalist team</span><span>7 min read</span></div>
+    </header>
+  </div>
+
+  <div class="wrap">
+    <div class="article">
+      <div class="prose">
+        <p>Monday, 23 November, 14:00, the Innovation Center Munich of T-Systems. Sixty people from newsrooms, product teams, development, design, data and research sit down for three days under one title: <em>Media Data Hack: turning editorial data into AI experiences</em>. The <a href="https://aiformedia.network/faq-zum-ai-for-media-hackathon-2026/">AI for Media Hackathon 2026</a> is a joint event of the AI for Media Network, T-Systems and pub.tech, with partners from Bayerischer Rundfunk, Süddeutsche Zeitung and SWR X-Lab in the programme and on the jury.</p>
+        <p>We came with a question that had been bothering us for a while: AI has made it cheap to turn recordings and documents into text, summaries and candidate facts. Why has it not made it any cheaper to <em>check</em> them?</p>
+
+        <div class="fact-row">
+          <div><div class="value">46 h</div><div class="label">from the opening on Monday to the end of hacking on Wednesday</div></div>
+          <div><div class="value">6</div><div class="label">people, each working with coding agents</div></div>
+          <div><div class="value">130</div><div class="label">merged pull requests by Wednesday morning</div></div>
+        </div>
+
+        <h2>The hackathon in brief</h2>
+        <p>The format asked teams to build AI-supported prototypes on journalistic data, either internal tools for newsrooms or new offerings for audiences. Participation was free and selective: ideas were submitted by 1 October, refined in an online pitch round on 8 October, where similar ideas were merged and teams formed, and the final list of participants followed at the end of October.</p>
+        <ul class="timeline">
+          <li><time>Mon 23 Nov, 14:00</time>Opening, technical introduction by T-Systems, final team building</li>
+          <li><time>Mon 23 Nov, 16:30</time>Hacking starts</li>
+          <li><time>Tue 24 Nov</time>Hacking from 9:00 “till late”</li>
+          <li><time>Wed 25 Nov, 12:00</time>End of hacking</li>
+          <li><time>Wed 25 Nov, 13:00</time>Result presentations, then the jury session and the awards</li>
+        </ul>
+        <p>Language models, transcription and embeddings were available through T-Systems' AI marketplace, and data sets were connected to the models through MCP servers. The jury scored five categories with up to five points each: innovation and creativity, technical implementation, usability and design, potential and scalability, and presentation and documentation. Teams had four minutes for presentation and demo, then two minutes of questions.</p>
+
+        <h2>What we brought: a concept, written down</h2>
+        <p>Open Journalist did not start in Munich. The idea and the first product concept come from Robin Greene, who had been part of the working group “Unit of News” at the AI for Media Network's symposium in Tutzing in 2024. The group concluded that journalistic information is best stored as a knowledge graph with events as its nodes. Open Journalist takes that idea into research: a <a href="../docs/concepts.html#graph">story graph</a> in which every event and every claim keeps its thread back to the evidence.</p>
+        <p>Before the hackathon, the repository held the product concept, an editorial workflow with seven phases and eighteen quality gates, an architecture with its decision records, and a short list of rules that code must never break. The most important one: <strong>agents propose, people decide.</strong></p>
+
+        <h2>What we built</h2>
+        <p>By Wednesday noon, Open Journalist was a desktop application for Windows and macOS, built on a lean Python core with a web interface. It runs on your own computer and talks to any OpenAI-compatible model; during the hackathon, that was the team model on T-Systems' LLM Hub. A project moves through five steps:</p>
+        <ol>
+          <li><strong>Start.</strong> “Give me what you have.” One field for files, links, text or speech.</li>
+          <li><strong>Explore.</strong> You set how confidential each file is. Tables are analyzed locally, and the model proposes theses.</li>
+          <li><strong>Check.</strong> Claims are pinned to their line in the text and checked against stored queries on the data.</li>
+          <li><strong>Build.</strong> Drafts in several formats, every sentence with its evidence.</li>
+          <li><strong>Release.</strong> Nothing is exported until the required gates are decided by a person.</li>
+        </ol>
+
+        <figure class="shot"><img src="../assets/img/screens/check-crop.webp" alt="Screenshot: the Check step with a supported and a contradicted claim and the evidence for the contradiction." width="1560" height="1420" loading="lazy"></figure>
+        <figcaption>The Check step of the demo case: “around 545,000” holds, “1.6 million” does not, and the evidence says why.</figcaption>
+
+        <h2>The demo: 545,142 or 1.6 million?</h2>
+        <p>For the stage we needed a case that anyone in the room would understand in seconds. We wrote a short synthetic text, marked as such, with three claims about new registrations of electric cars in Germany, and put it next to a cleaned table of new registrations from 2013 to October 2026, about 60,000 rows.</p>
+        <p>The text claims around 545,000 new electric cars in 2025, and that an analysis on the web counts 1.6 million. Open Journalist's local table analysis spots the problem before any model is involved: the file mixes single rows with subtotals and grand totals. A stored query over the grand-total rows gives <strong>545,142</strong>, which supports the first claim. The same query over every row gives <strong>1,631,168</strong>, which is exactly how you get to “1.6 million”: by counting the same cars several times. The third claim, about public charging points, has no material behind it. It stays a gap, and no model is allowed to fill it.</p>
+        <p>From the confirmed claims, the Story Builder drafted a web article and a radio two-way. Before the export unlocked, two gates had to be decided: G03, the source and evidence check, and G14, sign-off and release.</p>
+
+        <h2>How we worked: people and agents</h2>
+        <p>Six people built Open Journalist, and none of them worked alone. Each worked with coding agents, in parallel sessions, on small pull requests. A team board, itself a Claude artifact with its own database, showed progress, plans, decisions and the chat with the coordinating agent, which we called Marvin.</p>
+        <p>Much of the planning happened out loud. Conversations at the table were recorded, transcribed, and turned into build plans and work orders for the agents, each with its sources and a check by a second agent with fresh context. Fourteen transcripts went into the plans. Feedback from outside the team came in through a QR code, spoken or typed, and accepted items became issues in the repository.</p>
+        <p>The test rounds were humbling, which is what test rounds are for. The first one, on Tuesday morning, found that the check timed out after 60 seconds, that the interface hung while it waited for the model, and that a CSV file showed up as a block of text. All three were fixed the same day. A measurement against the team endpoint later that morning took 475 seconds for the full check of the demo case and got all three expected findings right, plus some filler claims from headings, which led to the next fix.</p>
+
+        <h2>What we learned</h2>
+        <h3>Start where the material is</h3>
+        <p>Our first version opened with a form. The feedback was blunt: too academic, too cluttered. So the start became a conversation: drop in what you have, say what you are after, and Open Journalist answers with what it sees. Its position became clear in the process: Open Journalist starts when there is material, not at the idea.</p>
+        <h3>Direction first, claims second</h3>
+        <p>Pulling every claim out of every document produces thousands of statements that a reporter under deadline will never read. The better order is to analyze the material, propose a direction, and only then extract the claims that matter for it, atomic, one fact each.</p>
+        <h3>Numbers belong to the data, not to the model</h3>
+        <p>The model may write a query, but the app checks that it only reads, runs it locally, and shows query and result. A figure the model writes on its own is marked as unchecked. That one rule is what makes the demo case work.</p>
+        <h3>Formats are editorial knowledge</h3>
+        <p>A web article, a radio two-way, a TV piece and a long-form feature differ in tone, structure and length, not in their facts. So formats became plain Markdown templates that a newsroom can edit without writing code. Our bet: the moment an editor sees their own channel in the format list, and thinks “I know that one”, is when the idea clicks.</p>
+
+        <h2>What comes next</h2>
+        <p>The prototype is a start, not a product. The <a href="../#roadmap">roadmap</a> leads to a tool for freelance journalists in the first half of 2027, to teams and whole newsrooms in the second half, and to a Trusted Content Pool across organizations in 2028, in which newsrooms share signed attestations of verified units, never the material behind them.</p>
+        <p>Open Journalist is developed in the open under the European Union Public Licence. The most valuable contribution right now comes from newsroom practice: tell us what in the workflow, the gates or the formats does not match how your newsroom works.</p>
+        <p class="muted">This article was written on the day of the result presentations, before the jury had decided. Thanks to the organizers and partners of the AI for Media Hackathon 2026 for three intense days, and to everyone who tested, argued and sent feedback.</p>
+
+        <div class="btn-row">
+          <a class="btn btn--solid" href="../docs/install.html">Try Open Journalist</a>
+          <a class="btn" href="../docs/guide.html#example">Follow the demo case</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom" style="margin-top:0;border-top:0;padding-top:0">
+      <span>© 2026 Robin Greene and contributors · EUPL-1.2</span>
+      <span><a href="../">Home</a> · <a href="../docs/">Docs</a> · <a href="./">Blog</a> · <a href="https://github.com/open-journalist/open-journalist">GitHub</a></span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>

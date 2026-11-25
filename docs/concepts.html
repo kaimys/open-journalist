@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Concepts · Open Journalist</title>
+<meta name="description" content="The ideas behind Open Journalist: the story graph, evidence binding, quality gates, sensitivity classes, the editorial workflow and the Trusted Content Pool.">
+<link rel="icon" href="../assets/img/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="Open Journalist, home"><img src="../assets/img/logo.svg" alt="open journalist" width="160" height="22"></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="../#demo">Demo</a>
+      <a href="../#why">Why</a>
+      <a href="./" aria-current="page">Docs</a>
+      <a href="../blog/">Blog</a>
+      <a href="https://github.com/open-journalist/open-journalist">GitHub</a>
+      <a class="btn btn--solid" href="install.html">Get started</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Documentation · Concepts</span>
+    <h1>The ideas behind it</h1>
+    <p class="lead">Open Journalist is a harness: the editorial layer around an agent. These are the concepts it is built on, and the rules the code may never break.</p>
+  </div>
+</div>
+
+<main id="main" class="wrap docs">
+  <aside class="docs-nav" aria-label="Documentation">
+    <h4>Documentation</h4>
+    <ul>
+      <li><a href="./">Overview</a></li>
+      <li><a href="install.html">Installation</a></li>
+      <li><a href="guide.html">User guide</a></li>
+      <li><a href="concepts.html" aria-current="page">Concepts</a>
+        <ul>
+          <li><a href="#harness">A harness</a></li>
+          <li><a href="#rules">Product rules</a></li>
+          <li><a href="#graph">Story graph</a></li>
+          <li><a href="#evidence">Evidence and states</a></li>
+          <li><a href="#workflow">Seven phases</a></li>
+          <li><a href="#gates">Quality gates</a></li>
+          <li><a href="#sensitivity">Sensitivity classes</a></li>
+          <li><a href="#pool">Trusted Content Pool</a></li>
+          <li><a href="#stack">Technology</a></li>
+        </ul>
+      </li>
+    </ul>
+    <h4>In the repository</h4>
+    <ul>
+      <li><a href="https://github.com/open-journalist/open-journalist/blob/main/docs/concept/product-concept.md">Product concept</a></li>
+      <li><a href="https://github.com/open-journalist/open-journalist/blob/main/docs/concept/story-graph.md">Story graph</a></li>
+      <li><a href="https://github.com/open-journalist/open-journalist/blob/main/docs/workflow.md">Editorial workflow</a></li>
+      <li><a href="https://github.com/open-journalist/open-journalist/blob/main/docs/concept/glossary.md">Glossary</a></li>
+      <li><a href="https://github.com/open-journalist/open-journalist/tree/main/docs/architecture/decisions">Decision records</a></li>
+    </ul>
+  </aside>
+
+  <article class="prose">
+    <h2 id="harness">A harness, not another tool</h2>
+    <p>A model on its own answers questions. A <strong>harness</strong> is everything around it that makes the answers usable for a particular kind of work: what material it may see, which tools it may call, what it must prove, who decides, and what is recorded. Open Journalist is a harness for journalism. Its editorial layer consists of the Story Repository, the quality gates with human sign-off, the editorial roles, the sensitivity-based routing of material to models and, later, the Trusted Content Pool.</p>
+    <p>The core is model-agnostic and runs locally. The editorial layer is built behind interfaces, independent of the agent core, so that the core stays replaceable.</p>
+
+    <h2 id="rules">Rules the code may never break</h2>
+    <ol>
+      <li><strong>Agents propose, people decide.</strong> Anything an agent adds to a story's record is “proposed” until a person confirms it.</li>
+      <li>Agents change documents only as suggestions and never mark a task as done or a gate as passed.</li>
+      <li>Outbound actions, such as sending a request, publishing or writing to the Pool, require explicit approval.</li>
+      <li>Release is blocked until the required gates are signed off by the responsible roles.</li>
+      <li>The sensitivity class of material decides which models and services may receive it, enforced in code and network configuration.</li>
+      <li>Skills never relax a gate, and every change to a skill is approved by a person.</li>
+      <li>Markdown files are the source of truth. Indexes, graphs and caches can be deleted and rebuilt.</li>
+      <li>The Pool receives attestations, never raw material that could identify a source.</li>
+      <li>A claim without evidence is shown as a gap, never filled with generated text.</li>
+    </ol>
+    <p class="muted">A change that weakens one of these rules is a design change and needs a decision record, not a pull request.</p>
+
+    <h2 id="graph">The story graph</h2>
+    <figure><img src="../assets/img/readme/story-graph-light.webp" alt="A story graph of events joined by relations, one still dashed. Threads lead from it to an online text, a radio script and a mobile view, and a dashed thread to the next format." width="1600" height="704" loading="lazy"></figure>
+    <p>The story graph is a knowledge graph in which <strong>events are the nodes</strong> and the <strong>relations between events are the edges</strong>: one event follows another, is part of it, updates or supersedes it, causes it, contradicts it, or is the same event. People, organizations and places are objects of their own; claims, sources and evidence hang on the events.</p>
+    <p>A <strong>story</strong> is an ordered selection of events told from an angle. One event can belong to many stories, and a story can be told in many forms: a web article, a radio script, a briefing, or a format nobody has asked for yet. Journalists do not have to think in graphs to use it; structure is a by-product of normal work.</p>
+    <p>The idea comes from structured journalism, in particular from David Caswell, who described the event as the basic unit of news. At the AI for Media Network's symposium in Tutzing in November 2024, the working group “Unit of News” concluded that a knowledge graph with events as nodes is the preferred way to store journalistic information. Open Journalist adds what research needs: evidence as the root of every statement, claims kept apart from events so that contradictions stay visible, and confirmation by a person as the way the graph is curated.</p>
+    <p>The story graph is what is kept; the <strong>Story Repository</strong> is where it is kept: the store with the original material, the derived text, the graph, the log of every change and the index, in open file formats you can read without the application.</p>
+
+    <h2 id="evidence">Evidence and states</h2>
+    <p>Every event and claim points to the passage, line, page or time range that supports it. A figure points to a stored query with its parameters and the hash of the table it ran on. Without evidence, a statement stays a proposal.</p>
+    <div class="states" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr));margin:0 0 1.6em">
+      <div class="state state--proposed"><span class="eyebrow">Proposed</span><div class="glyph"><div class="g-dash"></div></div><p>By the agent, open.</p></div>
+      <div class="state"><span class="eyebrow">Supported</span><div class="glyph"><div class="g-thread"></div></div><p>Evidence found.</p></div>
+      <div class="state state--contradicted"><span class="eyebrow">Contradicted</span><div class="glyph"><div class="g-line"></div></div><p>Does not hold.</p></div>
+      <div class="state state--proposed"><span class="eyebrow">Gap</span><div class="glyph"><div class="g-gap"></div></div><p>No evidence.</p></div>
+      <div class="state state--released"><span class="eyebrow">Released</span><div class="glyph"><div class="g-stamp"></div></div><p>Signed off.</p></div>
+    </div>
+    <p>The interface tells states apart by stroke, label and typeface, not by color: proposed is dashed, confirmed is drawn through in ink, a contradicted finding has a heavier frame and is struck through, a gap is a dashed circle. Figures the system knows for sure are set in a monospaced typeface.</p>
+    <p><strong>Finding is not verifying.</strong> A conspicuous pattern from an analysis is a <em>lead</em>: possible material for a story, not a finding. It becomes a claim only after a person has verified it.</p>
+
+    <h2 id="workflow">Seven phases of editorial work</h2>
+    <p>The product follows the editorial process from the idea to the time after publication. Journalists see these phases, not the machinery. The prototype covers phases 1 to 5 in its five steps.</p>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Phase</th><th>The person</th><th>The agent</th></tr></thead>
+      <tbody>
+        <tr><td>0 Idea and topic selection</td><td>Observes, proposes, decides to pursue a story</td><td>Collects signals, drafts a topic proposal</td></tr>
+        <tr><td>1 Research</td><td>Finds and questions sources, collects and verifies material</td><td>Opens material up, lists leads, anchors evidence, counts independent sources</td></tr>
+        <tr><td>2 Conception</td><td>Chooses angle, medium and narrative form</td><td>Proposes structures from confirmed units</td></tr>
+        <tr><td>3 Production</td><td>Writes, records, edits</td><td>Drafts from confirmed units, marks gaps</td></tr>
+        <tr><td>4 Quality assurance and release</td><td>Edits, checks facts, signs off</td><td>Shows what is still open, prepares checklists</td></tr>
+        <tr><td>5 Handover and publication</td><td>Hands over to the CMS or production, publishes</td><td>Exports with evidence, labels and provenance</td></tr>
+        <tr><td>6 After publication</td><td>Corrects, analyzes, learns</td><td>Passes corrections on to everything that used the story</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2 id="gates">Quality gates</h2>
+    <p>Eighteen checkpoints, <code>G01</code> to <code>G18</code>, each with a checklist and a responsible role. A gate is always decided by a person; an agent can prepare the checklist but never pass it.</p>
+    <ul>
+      <li><strong>Always required:</strong> <span class="tag">G03</span> source and evidence check, and <span class="tag">G14</span> sign-off and release.</li>
+      <li><strong>In a team:</strong> <span class="tag">G10</span> editing with a second pair of eyes.</li>
+      <li><strong>When the content calls for it:</strong> for example <span class="tag">G05</span> request for comment, <span class="tag">G06</span> image, video and audio verification, <span class="tag">G07</span> figures and statistics, <span class="tag">G08</span> quotes and interviews, <span class="tag">G11</span> legal review, <span class="tag">G12</span> labeling.</li>
+      <li><strong>After publication:</strong> <span class="tag">G17</span> correction and <span class="tag">G18</span> retrospective.</li>
+    </ul>
+    <p>A newsroom can switch on further gates for its own work. A decision refers to a fingerprint of the story: if the story changes afterwards, the gate counts as open again until a person decides anew.</p>
+
+    <h2 id="sensitivity">Sensitivity classes</h2>
+    <p>Every piece of material carries a class, from the strictest to the least strict. Everything derived from it, such as text, claims and drafts, inherits it. Each model endpoint has a list of classes it may receive.</p>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Class</th><th>Meaning</th><th>Rule</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tag">T0</span></td><td>Source protection</td><td>Never sent to any online service; only a model on this computer</td></tr>
+        <tr><td><span class="tag">T1</span></td><td>Confidential</td><td>Only to endpoints explicitly allowed; planned: names replaced by placeholders on this computer before sending</td></tr>
+        <tr><td><span class="tag">T2</span></td><td>Internal</td><td>Default for a new API endpoint, together with public</td></tr>
+        <tr><td><span class="tag tag--dashed">public</span></td><td>Public</td><td>May go to any configured endpoint and to the web search</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>A request is checked before it is sent, and refused if no allowed endpoint exists. Web research runs at arm's length: a separate search never sees your material, and each query is shown before it goes out, because a search history can reveal an investigation.</p>
+
+    <h2 id="pool">Trusted Content Pool</h2>
+    <p>Later, teams, media organizations and networks will share <strong>signed attestations</strong> that a story unit was verified, without handing over the material behind it, so that nothing that could identify a source leaves the newsroom. The Pool starts within one organization and grows into a network across organizations, with trust tiers, a transparency log and a correction feed. Pool gates <code>P01</code> to <code>P09</code> protect it against poisoning. In the prototype, news sources connected over MCP are its first view; their items count as context, never as evidence.</p>
+
+    <h2 id="stack">Technology</h2>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Layer</th><th>Built with</th></tr></thead>
+      <tbody>
+        <tr><td>Core</td><td>Python 3.11+, FastAPI and uvicorn, an own lean agent loop without a framework, OpenAI Python SDK for any compatible endpoint</td></tr>
+        <tr><td>Data</td><td>SQLite as working store, DuckDB for read-only queries on tables, originals stored unchanged with SHA-256</td></tr>
+        <tr><td>Interface</td><td>React, TypeScript and Vite; React Flow for the graph; Inter and JetBrains Mono, bundled so the app runs offline</td></tr>
+        <tr><td>Local modules</td><td>faster-whisper for transcription and voice input; rule-based pseudonymization</td></tr>
+        <tr><td>App</td><td>pywebview window, packaged with PyInstaller for Windows and macOS; runs only on your own computer</td></tr>
+        <tr><td>Standards</td><td>Model Context Protocol for tools and news sources, Agent Skills format for editorial knowledge, NewsML-G2 planned for print handover</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Every third-party component is checked against the project's license matrix before it is added. The project itself is licensed under the European Union Public Licence 1.2.</p>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom" style="margin-top:0;border-top:0;padding-top:0">
+      <span>© 2026 Robin Greene and contributors · EUPL-1.2</span>
+      <span><a href="../">Home</a> · <a href="./">Docs</a> · <a href="../blog/">Blog</a> · <a href="https://github.com/open-journalist/open-journalist">GitHub</a></span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Installation · Open Journalist</title>
+<meta name="description" content="How to install Open Journalist on Windows and macOS, run it from the source code, check the installation and find the log files.">
+<link rel="icon" href="../assets/img/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="../" aria-label="Open Journalist, home"><img src="../assets/img/logo.svg" alt="open journalist" width="160" height="22"></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="../#demo">Demo</a>
+      <a href="../#why">Why</a>
+      <a href="./" aria-current="page">Docs</a>
+      <a href="../blog/">Blog</a>
+      <a href="https://github.com/open-journalist/open-journalist">GitHub</a>
+      <a class="btn btn--solid" href="install.html">Get started</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Documentation · Installation</span>
+    <h1>Install Open Journalist</h1>
+    <p class="lead">Two ways to run it: a packaged build for Windows or macOS, or straight from the source code, which always gives you the newest version.</p>
+  </div>
+</div>
+
+<main id="main" class="wrap docs">
+  <aside class="docs-nav" aria-label="Documentation">
+    <h4>Documentation</h4>
+    <ul>
+      <li><a href="./">Overview</a></li>
+      <li><a href="install.html" aria-current="page">Installation</a>
+        <ul>
+          <li><a href="#requirements">Requirements</a></li>
+          <li><a href="#build">Packaged build</a></li>
+          <li><a href="#source">From the source code</a></li>
+          <li><a href="#model">Connect a model</a></li>
+          <li><a href="#selftest">Check the installation</a></li>
+          <li><a href="#logs">Log files</a></li>
+          <li><a href="#data">Where your data lives</a></li>
+        </ul>
+      </li>
+      <li><a href="guide.html">User guide</a></li>
+      <li><a href="concepts.html">Concepts</a></li>
+    </ul>
+    <h4>More</h4>
+    <ul>
+      <li><a href="https://github.com/open-journalist/open-journalist/blob/main/docs/development.md">Developer docs</a></li>
+      <li><a href="https://github.com/open-journalist/open-journalist/releases">All releases</a></li>
+    </ul>
+  </aside>
+
+  <article class="prose">
+    <div class="note">
+      <strong>Status: early prototype</strong>
+      <p>Open Journalist is a prototype from November 2026. Do not use it with real research material yet. While the repository is private, downloads and source code need a GitHub account with access to it.</p>
+    </div>
+
+    <h2 id="requirements">Requirements</h2>
+    <ul>
+      <li><strong>Windows</strong> on x64, or <strong>macOS</strong> on Apple silicon. Intel Macs are not covered by the packaged build.</li>
+      <li>No administrator rights are needed.</li>
+      <li>For the model features: access to a language model with an <strong>OpenAI-compatible API</strong>, for example your organization's own inference, a European provider or a local server. The local features (table analysis, findings, file previews) work without one.</li>
+      <li>To run from the source code: <a href="https://git-scm.com/">Git</a>, <a href="https://www.python.org/downloads/">Python 3.11 or later</a> and <a href="https://nodejs.org/">Node.js 22</a> with npm.</li>
+    </ul>
+
+    <h2 id="build">Install a packaged build</h2>
+    <p>Builds are made by hand from <code>main</code> and published as releases. The newest is marked <em>Latest</em>.</p>
+    <div class="btn-row" style="margin:0 0 1.6em">
+      <a class="btn btn--solid" href="https://github.com/open-journalist/open-journalist/releases/latest/download/OpenJournalist-windows-x64.zip">Windows x64 (.zip)</a>
+      <a class="btn" href="https://github.com/open-journalist/open-journalist/releases/latest/download/OpenJournalist-macos-arm64.dmg">macOS Apple silicon (.dmg)</a>
+    </div>
+    <p>The builds are not signed yet, so both operating systems warn at the first start.</p>
+
+    <div class="tabs">
+      <div class="tab-list" role="tablist" aria-label="Operating system">
+        <button role="tab" id="t-win" aria-controls="p-win" aria-selected="true" data-platform="win">Windows</button>
+        <button role="tab" id="t-mac" aria-controls="p-mac" aria-selected="false" tabindex="-1" data-platform="mac">macOS</button>
+      </div>
+      <div class="tab-panel" id="p-win" role="tabpanel" aria-labelledby="t-win">
+        <ol>
+          <li>Unpack <code>OpenJournalist-windows-x64.zip</code> into a folder of your choice, for example under <code>Documents</code>.</li>
+          <li>Open the folder <code>OpenJournalist</code> and double-click <code>OpenJournalist.exe</code>. Keep the folder <code>_internal</code> next to it.</li>
+          <li><strong>SmartScreen:</strong> if Windows shows “Windows protected your PC”, choose <strong>More info</strong>, then <strong>Run anyway</strong>.</li>
+          <li>The window uses the Microsoft Edge WebView2 runtime. If no window can be created, Open Journalist opens your browser instead.</li>
+        </ol>
+      </div>
+      <div class="tab-panel" id="p-mac" role="tabpanel" aria-labelledby="t-mac" hidden>
+        <ol>
+          <li>Open <code>OpenJournalist-macos-arm64.dmg</code> and drag <strong>OpenJournalist</strong> onto <strong>Applications</strong>.</li>
+          <li><strong>Gatekeeper:</strong> the app is neither signed nor notarized, so macOS refuses to open it the first time. Open <strong>System Settings → Privacy &amp; Security</strong>, scroll to the message about OpenJournalist, choose <strong>Open Anyway</strong> and confirm.</li>
+          <li>If macOS reports the app as damaged, remove the quarantine mark in Terminal and open it again:
+<pre><code>xattr -dr com.apple.quarantine /Applications/OpenJournalist.app</code></pre></li>
+        </ol>
+      </div>
+    </div>
+
+    <h2 id="source">Run it from the source code</h2>
+    <p>This is the usual way during the prototype phase. One command sets everything up, builds the interface and opens Open Journalist in your browser. The first start takes a few minutes.</p>
+    <div class="tabs">
+      <div class="tab-list" role="tablist" aria-label="Operating system">
+        <button role="tab" id="ts-win" aria-controls="ps-win" aria-selected="true" data-platform="win">Windows</button>
+        <button role="tab" id="ts-mac" aria-controls="ps-mac" aria-selected="false" tabindex="-1" data-platform="mac">macOS and Linux</button>
+      </div>
+      <div class="tab-panel" id="ps-win" role="tabpanel" aria-labelledby="ts-win">
+<pre><code>git clone https://github.com/open-journalist/open-journalist.git
+cd open-journalist
+start.bat</code></pre>
+      </div>
+      <div class="tab-panel" id="ps-mac" role="tabpanel" aria-labelledby="ts-mac" hidden>
+<pre><code>git clone https://github.com/open-journalist/open-journalist.git
+cd open-journalist
+./start.sh</code></pre>
+        <p>On macOS, <code>./packaging/macos/install-dock-app.sh</code> adds an Open Journalist app to <code>~/Applications</code> that you can keep in the Dock.</p>
+      </div>
+    </div>
+    <p>The start script creates a virtual environment in <code>.venv</code>, installs the core and builds the user interface. On the branch <code>main</code>, every start first fetches the newest state from GitHub (fast-forward only), so the same command always runs the newest version. Offline or with local changes in the way, the current version starts.</p>
+    <dl class="kv">
+      <dt>--demo</dt><dd>Puts the demo case “E-Auto-Check (Demo)” into your working store first. See the <a href="guide.html#example">worked example</a>.</dd>
+      <dt>--selftest</dt><dd>Checks the installation and exits.</dd>
+      <dt>OJ_NO_UPDATE=1</dt><dd>Skips the update check, for example <code>OJ_NO_UPDATE=1 ./start.sh</code>; on Windows <code>set OJ_NO_UPDATE=1</code> before <code>start.bat</code>.</dd>
+    </dl>
+
+    <h2 id="model">Connect a model</h2>
+    <p>Open Journalist has no model built in and sends nothing until you configure an endpoint. Open <strong>Settings → Models</strong> and add one:</p>
+    <ol>
+      <li><strong>Base URL</strong> of an OpenAI-compatible API, and the <strong>model name</strong>: pick it from the endpoint's model list or type it.</li>
+      <li>The <strong>API key</strong>. It goes straight to the credential store of your operating system (Windows Credential Manager or macOS Keychain) and is never written to a file or a log.</li>
+      <li>The <strong>allowed sensitivity classes</strong>. A new API endpoint may receive <code>T2</code> and <code>public</code> by default. <code>T0</code> is never sent to an API.</li>
+      <li>Press <strong>Test connection</strong>. It sends two short synthetic prompts, never your material.</li>
+    </ol>
+    <p>Under <strong>Settings → Privacy</strong> you can see for each class which endpoint would receive it, and every request that was refused.</p>
+    <figure class="shot"><img src="../assets/img/screens/privacy-crop.webp" alt="Screenshot: Settings, Privacy, with the table “Wohin Material geht”: T0 nowhere, refused; T1, T2 and public to the team model, an API endpoint that leaves this computer." width="1290" height="970" loading="lazy"></figure>
+
+    <h2 id="selftest">Check the installation</h2>
+    <p><code>--selftest</code> checks every module and dependency, the working store, the files of the interface and the local server, without opening a window and without touching your projects. The exit code is 0 only if every check passed.</p>
+    <div class="tabs">
+      <div class="tab-list" role="tablist" aria-label="Operating system">
+        <button role="tab" id="tt-win" aria-controls="pt-win" aria-selected="true" data-platform="win">Windows (PowerShell)</button>
+        <button role="tab" id="tt-mac" aria-controls="pt-mac" aria-selected="false" tabindex="-1" data-platform="mac">macOS</button>
+      </div>
+      <div class="tab-panel" id="pt-win" role="tabpanel" aria-labelledby="tt-win">
+<pre><code>$p = Start-Process .\OpenJournalist.exe -ArgumentList "--selftest" -Wait -PassThru
+$p.ExitCode
+Get-Content "$env:LOCALAPPDATA\OpenJournalist\Logs\selftest.log"</code></pre>
+      </div>
+      <div class="tab-panel" id="pt-mac" role="tabpanel" aria-labelledby="tt-mac" hidden>
+<pre><code>/Applications/OpenJournalist.app/Contents/MacOS/OpenJournalist --selftest</code></pre>
+      </div>
+    </div>
+    <p>Each check prints one line starting with <code>[PASS]</code> or <code>[FAIL]</code>; a failed line names what is missing. The last line is <code>RESULT: PASS</code> or <code>RESULT: FAIL (…)</code>.</p>
+
+    <h2 id="logs">Log files</h2>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Platform</th><th>Folder</th></tr></thead>
+      <tbody>
+        <tr><td>Windows</td><td><code>%LOCALAPPDATA%\OpenJournalist\Logs\</code></td></tr>
+        <tr><td>macOS</td><td><code>~/Library/Logs/OpenJournalist/</code></td></tr>
+        <tr><td>Linux</td><td><code>~/.local/state/OpenJournalist/log/</code></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>Each start writes one log file; the ten newest are kept. Logs record identifiers, counts and durations, never keys, document texts or names. When an error message ends with a reference such as <code>(Log: 2026-11-24 14:03:27 job:9b1d77aa)</code>, name it when you report the problem. Settings shows the log file of the current start, and “Open folder” opens its folder.</p>
+
+    <h2 id="data">Where your data lives</h2>
+    <p>Projects, documents, claims and decisions stay on your computer, outside the program folder. Every uploaded file is kept byte for byte with its SHA-256 hash, which is checked on every read.</p>
+    <div class="table-scroll">
+    <table>
+      <thead><tr><th>Platform</th><th>Story data</th><th>Settings</th></tr></thead>
+      <tbody>
+        <tr><td>Windows</td><td><code>%LOCALAPPDATA%\OpenJournalist\</code></td><td><code>%LOCALAPPDATA%\OpenJournalist\settings.json</code></td></tr>
+        <tr><td>macOS</td><td><code>~/Library/Application Support/OpenJournalist/</code></td><td>same folder, <code>settings.json</code></td></tr>
+        <tr><td>Linux</td><td><code>~/.local/share/OpenJournalist/</code></td><td><code>~/.config/OpenJournalist/settings.json</code></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p>The environment variables <code>OPENJOURNALIST_DATA_DIR</code> and <code>OPENJOURNALIST_CONFIG_DIR</code> point Open Journalist at other folders, for example a separate folder for a demo.</p>
+
+    <h2 id="trouble">When something does not work</h2>
+    <p>Run <code>--selftest</code> and send <code>selftest.log</code> together with the newest <code>openjournalist-….log</code> to the team, through an <a href="https://github.com/open-journalist/open-journalist/issues">issue</a>. Read the log files before you share them: they contain folder paths, which usually include your user name. Never attach research material.</p>
+
+    <div class="btn-row">
+      <a class="btn btn--solid" href="guide.html">Next: the user guide →</a>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom" style="margin-top:0;border-top:0;padding-top:0">
+      <span>© 2026 Robin Greene and contributors · EUPL-1.2</span>
+      <span><a href="../">Home</a> · <a href="./">Docs</a> · <a href="../blog/">Blog</a> · <a href="https://github.com/open-journalist/open-journalist">GitHub</a></span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/site.js" defer></script>
+</body>
+</html>
